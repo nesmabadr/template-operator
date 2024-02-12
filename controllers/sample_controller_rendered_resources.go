@@ -119,8 +119,8 @@ func (r *SampleReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctr
 		return ctrl.Result{}, r.setStatusForObjectInstance(ctx, &objectInstance, status.WithState(r.FinalDeletionState))
 	}
 
-	// add finalizer if not present
 	if objectInstance.GetDeletionTimestamp().IsZero() {
+		// add finalizer if not present
 		if controllerutil.AddFinalizer(&objectInstance, finalizer) {
 			return ctrl.Result{}, r.ssa(ctx, &objectInstance)
 		}
