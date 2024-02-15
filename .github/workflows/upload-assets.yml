@@ -16,4 +16,4 @@ jobs:
       - name: Checkout template operator
         uses: actions/checkout@v4
       - name: Run upload assets script
-        run: ./scripts/release/upload_assets.sh
+        run: bash ./scripts/release/upload_assets.sh
