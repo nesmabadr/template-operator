@@ -18,7 +18,7 @@ jobs:
       - name: Checkout template operator
         uses: actions/checkout@v4
       - name: Run upload assets script
-        run: shell gcloud auth application-default print-access-token
+        run: gcloud auth application-default print-access-token
 
 #bash ./scripts/release/upload_assets.sh
 
