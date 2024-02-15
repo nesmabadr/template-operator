@@ -12,8 +12,13 @@ jobs:
     env:
       PULL_BASE_REF: ${{  github.ref_name }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MODULE_REGISTRY: europe-docker.pkg.dev/kyma-project/prod/unsigned
+      IMG: europe-docker.pkg.dev/kyma-project/prod/template-operator:${{  github.ref_name }}
     steps:
       - name: Checkout template operator
         uses: actions/checkout@v4
       - name: Run upload assets script
-        run: bash ./scripts/release/upload_assets.sh
+        run: shell gcloud auth application-default print-access-token
+
+#bash ./scripts/release/upload_assets.sh
+
