@@ -27,14 +27,13 @@ jobs:
           project_id: 'sap-kyma-jellyfish-dev'
           workload_identity_provider: 'projects/718973091829/locations/global/workloadIdentityPools/github-action/providers/github-actions'
           service_account: 'github-actions-sa@sap-kyma-jellyfish-dev.iam.gserviceaccount.com'
-      - name: 'Set up Cloud SDK'
+      - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
         with:
           version: '>= 363.0.0'
-      - name: Login to gcloud
-        run: |-
-            gcloud info
-      #- name: Run upload assets script
-      #  run: bash ./scripts/release/upload_assets.sh
+      - name: Login to GCP
+        run: gcloud auth application-default print-access-token --impersonate-service-account github-actions-sa@sap-kyma-jellyfish-dev.iam.gserviceaccount.com
+#      - name: Run upload assets script
+#        run: bash ./scripts/release/upload_assets.sh
 
 
