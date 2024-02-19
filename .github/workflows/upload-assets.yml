@@ -26,6 +26,7 @@ jobs:
         with:
           project_id: 'sap-kyma-jellyfish-dev'
           workload_identity_provider: 'projects/718973091829/locations/global/workloadIdentityPools/github-action/providers/github-actions'
+          service_account: 'github-actions-sa@sap-kyma-jellyfish-dev.iam.gserviceaccount.com'
       - name: Login to gcloud
         run: |-
             gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
