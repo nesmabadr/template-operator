@@ -4,6 +4,9 @@ on:
   create:
     tags:
       - 'v?[0-9]+.[0-9]+.[0-9]+(?:-.*)?'
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   upload-assets:
@@ -12,13 +15,17 @@ jobs:
     env:
       PULL_BASE_REF: ${{  github.ref_name }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      MODULE_REGISTRY: europe-docker.pkg.dev/kyma-project/prod/unsigned
-      IMG: europe-docker.pkg.dev/kyma-project/prod/template-operator:${{  github.ref_name }}
+      MODULE_REGISTRY: europe-west3-docker.pkg.dev/sap-kyma-jellyfish-dev/template-operator
+      IMG: europe-west3-docker.pkg.dev/sap-kyma-jellyfish-dev/template-operator:${{  github.ref_name }}
     steps:
       - name: Checkout template operator
         uses: actions/checkout@v4
-      - name: Run upload assets script
-        run: gcloud auth application-default print-access-token
+      - name: Authenticate with GCP
+        uses: 'google-github-actions/auth@v2'
+        with:
+          project_id: 'sap-kyma-jellyfish-dev'
+          workload_identity_provider: 'projects/718973091829/locations/global/workloadIdentityPools/github-action/providers/github-actions'
+      #- name: Run upload assets script
+      #  run: bash ./scripts/release/upload_assets.sh
 
-#bash ./scripts/release/upload_assets.sh
 
