@@ -6,7 +6,7 @@ on:
       - 'v?[0-9]+.[0-9]+.[0-9]+(?:-.*)?'
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 jobs:
   upload-assets:
@@ -24,17 +24,11 @@ jobs:
         name: Authenticate with GCP
         uses: 'google-github-actions/auth@v2'
         with:
+          token_format: 'access_token'
           project_id: 'sap-kyma-jellyfish-dev'
           workload_identity_provider: 'projects/718973091829/locations/global/workloadIdentityPools/github-action/providers/github-actions'
           service_account: 'github-actions-sa@sap-kyma-jellyfish-dev.iam.gserviceaccount.com'
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v2'
-        with:
-          version: '>= 363.0.0'
-      - name: Login to gcloud
-        run: |-
-            gcloud info
-      #- name: Run upload assets script
-      #  run: bash ./scripts/release/upload_assets.sh
+      - name: Run upload assets script
+        run: bash ./scripts/release/upload_assets.sh
 
 
