@@ -20,7 +20,8 @@ jobs:
     steps:
       - name: Checkout template operator
         uses: actions/checkout@v4
-      - name: Authenticate with GCP
+      - id: 'auth'
+        name: Authenticate with GCP
         uses: 'google-github-actions/auth@v2'
         with:
           project_id: 'sap-kyma-jellyfish-dev'
