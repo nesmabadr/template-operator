@@ -15,10 +15,11 @@ endif
 
 # This will change the flags of the `kyma alpha module create` command in case we spot credentials
 # Otherwise we will assume http-based local registries without authentication (e.g. for k3d)
-ifneq (,$(PROW_JOB_ID))
+ifneq (,$(PULL_BASE_REF))
 GCP_ACCESS_TOKEN=$(shell gcloud auth application-default print-access-token)
 MODULE_CREATION_FLAGS=--registry $(MODULE_REGISTRY) --module-archive-version-overwrite -c oauth2accesstoken:$(GCP_ACCESS_TOKEN)
 else ifeq (,$(MODULE_CREDENTIALS))
+$(info ************ SECOND ************)
 # when built locally we should not include security content.
 MODULE_CREATION_FLAGS=--registry $(MODULE_REGISTRY) --module-archive-version-overwrite --insecure --sec-scanners-config=sec-scanners-config-local.yaml
 else
