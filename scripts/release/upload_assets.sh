@@ -12,7 +12,7 @@ uploadFile() {
   echo "Uploading ${filePath} as ${ghAsset}"
   response=$(curl -s -o output.txt -w "%{http_code}" \
                   --request POST --data-binary @"$filePath" \
-                  -H "Authorization: token $GITHUB_TOKEN" \
+                  -H "Authorization: token $BOT_GITHUB_TOKEN" \
                   -H "Content-Type: text/yaml" \
                    "$ghAsset")
   if [[ "$response" != "201" ]]; then
@@ -38,7 +38,7 @@ cat module-template.yaml
 echo "Fetching releases"
 CURL_RESPONSE=$(curl -w "%{http_code}" -sL \
                 -H "Accept: application/vnd.github+json" \
-                -H "Authorization: Bearer $GITHUB_TOKEN"\
+                -H "Authorization: Bearer $BOT_GITHUB_TOKEN"\
                 https://api.github.com/repos/kyma-project/template-operator/releases)
 JSON_RESPONSE=$(sed '$ d' <<< "${CURL_RESPONSE}")
 HTTP_CODE=$(tail -n1 <<< "${CURL_RESPONSE}")
