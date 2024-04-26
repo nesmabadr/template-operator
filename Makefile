@@ -178,6 +178,7 @@ build-module: kyma build-manifests configure-git-origin ## Build the Module and 
 	echo "running alpha create"
 	@$(KYMA) alpha create module --path . --output=module-template.yaml --module-config-file=module-config.yaml $(MODULE_CREATION_FLAGS)
 
+
 ########## Kyma CLI ###########
 KYMA_STABILITY ?= unstable
 
