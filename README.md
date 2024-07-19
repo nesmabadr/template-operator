@@ -157,7 +157,7 @@ If the module operator is deployed under the same namespace with other operators
 
 1. Add `commonLabels` to default `kustomization.yaml`. See [reference implementation](config/default/kustomization.yaml).
 
-2. Include all resources (for example, [manager.yaml](config/manager/manager.yaml)) that contain label selectors by using `commonLabels`.
+2. Include all resources (for example, [manager.yaml](config/manager/deployment/manager.yaml)) that contain label selectors by using `commonLabels`.
 
 Further reading: [Kustomize Built-In commonLabels](https://github.com/kubernetes-sigs/kustomize/blob/master/api/internal/konfig/builtinpluginconsts/commonlabels.go)
 
