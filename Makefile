@@ -173,11 +173,11 @@ configure-git-origin:
 		git remote add origin https://github.com/kyma-project/template-operator
 
 .PHONY: build-manifests
-build-manifests: manifests kustomize ## Install CRDs into the K8s cluster specified in ~/.kube/config.
+build-manifests: manifests kustomize
 	$(KUSTOMIZE) build config/default > template-operator.yaml
 
 .PHONY: build-statefulset-manifests
-build-statefulset-manifests: manifests kustomize ## Install CRDs into the K8s cluster specified in ~/.kube/config.
+build-statefulset-manifests: manifests kustomize
 	$(KUSTOMIZE) build config/statefulset > template-operator.yaml
 
 DEFAULT_CR ?= $(shell pwd)/config/samples/default-sample-cr.yaml
