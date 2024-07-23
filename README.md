@@ -155,7 +155,7 @@ Use one of the following options to install kubebuilder:
 #### Optional: Adjust the Default Config Resources
 If the module operator is deployed under the same namespace with other operators, differentiate your resources by adding common labels.
 
-1. Add `commonLabels` to default `kustomization.yaml`. See [reference implementation](config/default/kustomization.yaml).
+1. Add `commonLabels` to default `kustomization.yaml`. See [reference implementation](config/overlays/deployment/kustomization.yaml).
 
 2. Include all resources (for example, [manager.yaml](config/manager/deployment/manager.yaml)) that contain label selectors by using `commonLabels`.
 
