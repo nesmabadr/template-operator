@@ -1,0 +1,10 @@
+apiVersion: operator.kyma-project.io/v1beta2
+kind: ModuleReleaseMeta
+metadata:
+  name: template-operator
+  namespace: kcp-system
+spec:
+  channels:
+    - channel: regular
+      version: 1.0.0
+  moduleName: template-operator
