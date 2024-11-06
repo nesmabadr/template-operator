@@ -1,8 +1,20 @@
 name: kyma-project.io/module/template-operator
 channel: regular
 version: 1.0.1
-manifest: template-operator.yaml
+manifest: https://github.com/kyma-project/template-operator/releases/download/1.0.1/template-operator.yaml
 security: sec-scanners-config.yaml
-defaultCR: ./config/samples/default-sample-cr.yaml
-annotations:
-  operator.kyma-project.io/doc-url: https://kyma-project.io
+repository: https://github.com/kyma-project/template-operator
+documentation: https://github.com/kyma-project/template-operator/blob/main/README.md
+defaultCR: https://github.com/kyma-project/template-operator/releases/download/1.0.1/default-sample-cr.yaml
+icons:
+  - name: module-icon
+    link: https://github.com/kyma-project/template-operator/blob/main/docs/assets/logo.png
+resources:
+  - name: raw-manifest
+    link: https://github.com/kyma-project/template-operator/releases/download/1.0.1/template-operator.yaml
+manager:
+  name: template-operator-controller-manager
+  namespace: template-operator-system
+  group: apps
+  version: v1
+  kind: Deployment
