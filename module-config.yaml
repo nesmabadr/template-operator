@@ -10,7 +10,7 @@ icons:
   - name: module-icon
     link: https://github.com/kyma-project/template-operator/blob/main/docs/assets/logo.png
 resources:
-  - name: raw-manifest
+  - name: rawManifest
     link: https://github.com/kyma-project/template-operator/releases/download/1.0.1/template-operator.yaml
 manager:
   name: template-operator-controller-manager
